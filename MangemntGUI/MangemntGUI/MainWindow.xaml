@@ -1,0 +1,492 @@
+﻿<Window x:Class="MangemntGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MangemntGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Window.Resources>
+
+        <Style x:Key="btn" TargetType="Button">
+            <Setter Property="FontFamily" Value="Helvetica Neue,Helvetica,Arial,sans-serif"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border Name="border" CornerRadius="4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border Name="dropShadowBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="0" Visibility="Hidden">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.16">
+                                            <GradientStop Color="#22000000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <ContentPresenter Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!--default button highlight-->
+                            <Trigger Property="Button.IsDefaulted" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <!--inner drop shadow when pressed / checked-->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Visibility" TargetName="dropShadowBorder" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="dropShadowBorder" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="border" Value="0.60"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btn-primary" TargetType="Button" BasedOn="{StaticResource btn}">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="#fff"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#428bca"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#357ebd"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}">
+
+                            <ContentPresenter   Name="contentPresButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#1f1f1f"/>
+
+                                <Setter TargetName="border" Property="BorderBrush" Value="#1f1f1f" />
+                                <!--<Setter  Property="TextBlock.Foreground" Value="Gold"/>-->
+                                <Setter Property="Cursor" Value="Hand"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Effect" >
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="6" Direction="-85"   ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CornerRadius" Value="2,5,5,5">
+
+            </Setter>
+        </Style>
+
+
+        <ControlTemplate x:Key="TabControlTemplate"  TargetType="TabControl">
+            <Grid>
+                <StackPanel>
+                    <!--Allow to host the tabitem header within the first row of the grid -->
+                    <TabPanel IsItemsHost="True"/>
+                </StackPanel>
+                <Border Style="{StaticResource BorderStyle}" 
+                                BorderBrush="{x:Null}"  
+                                BorderThickness="{TemplateBinding BorderThickness}"  
+                                   Margin="5,45,0,0" 
+                        
+                                Background="White" >
+
+                    <!--Using ContentSource set to SelectedContent we will focus the content of the tabitem -->
+                    <ContentPresenter ContentSource="SelectedContent" VerticalAlignment="Top" />
+
+                </Border>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="trapezoidTab"   TargetType="TabItem">
+
+            <Grid>
+                <Polygon   KeyboardNavigation.ControlTabNavigation="Continue" Name="Polygon_Part" StrokeThickness="1"  Points="0,45,15,0,130,0,145,45"  Stroke="Gray" />
+
+
+                <ContentPresenter  VerticalAlignment="Center" HorizontalAlignment="Center"   Name="TabContent_Part"  ContentSource="Header"  />
+
+            </Grid>
+
+
+
+            <ControlTemplate.Triggers>
+
+                <Trigger Property="IsSelected"
+                                         Value="true">
+
+                    <Setter Property="Panel.ZIndex" Value="2"/>
+                    <Setter TargetName="Polygon_Part" Property="Fill" Value="#FFF9F9F9" />
+                    <Setter Property="TextElement.Foreground"
+                                            Value="#FF1559EC" />
+
+                </Trigger>
+
+
+                <Trigger Property="IsSelected" Value="False" >
+                    <Setter TargetName="Polygon_Part" Property="Fill"  Value="#FFD6D6D6" />
+
+                    <Setter Property="Panel.ZIndex" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!--Style and Template for  all TextBoxes That there are in screen  -->
+        <Style x:Key="stTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontWeight" Value="Light"/>
+
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding  Height}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" >
+                            <ScrollViewer Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--Style Trigger for ListBox   -->
+        <Style TargetType="ListBoxItem">
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="IsSelected" Value="True"/>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+        <BooleanToVisibilityConverter x:Key="btv" />
+
+        <!-- style a top level menu item -->
+        <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40">
+                <!-- label, icons, etc. -->
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter Property="Background" Value="#106EBE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- style a non-top level menu item -->
+        <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
+            <DockPanel FlowDirection="RightToLeft" TextBlock.FontSize="22px" x:Name="panel">
+                <!-- label, icons, etc. -->
+
+                <Label Content="{TemplateBinding Header}" Width="190" Foreground="Black" Margin="0,5,5,5" />
+
+                <!-- draw the right arrow only if this menu item has sub items -->
+
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </DockPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- style the separator -->
+        <ControlTemplate x:Key="VsMenuSep" TargetType="Separator">
+            <Border Height="1" Background="#E0E0E0" />
+        </ControlTemplate>
+
+        <!-- style the VSOnline -->
+        <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
+            <StackPanel FlowDirection="RightToLeft" TextBlock.FontSize="22px" Height="50" Orientation="Horizontal" Background="#005A9E" Width="200">
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- some base stuff -->
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#0078D7" />
+            <Setter Property="Height" Value="50px" />
+        </Style>
+
+    </Window.Resources>
+    
+    <ScrollViewer>
+
+        <Grid Background="#FF252217" Name="GridRoot"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="100"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="200"/>
+                <ColumnDefinition Width="267"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="275"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="GridHeader"  Background="#FF4381DB" Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="4" VerticalAlignment="Top"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition   Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Menu IsMainMenu="True" Grid.Column="0" Grid.Row="0">
+                    <MenuItem Name="menuMain" Header="{Binding}" Template="{StaticResource VsOnline}"  >
+                        <MenuItem Header="רענן" Template="{StaticResource VsMenuSub}" Click="MenuItem_Click"  />
+                        <MenuItem Name="meExit" Header="יציאה" Template="{StaticResource VsMenuSub}" Click="MenuItem_Click"  />
+                    </MenuItem>
+
+                </Menu>
+                <!--<Button  Name="ButtonSearchDate"  BorderBrush="#FF0F0E0E" BorderThickness="1,0,1,1"  Click="ButtonSearchDate_Click" Style="{StaticResource MyButtonStyle}" Grid.Column="0" HorizontalAlignment="Right"  FontSize="{Binding Path=FontSize, ElementName=TxtAuto}" Width="233" Margin="0,0,277.8,0.4"  >
+                    <Grid>
+                        <Path Name="ArrowInButton"  Grid.Column="0" Margin="0,16,210,0"  Fill="White"  Width="12" Height="7" Data= "M 0 0 L 6 6 L 12 0 Z" Stretch="Fill"  />
+                        <Label Name="lablName" HorizontalAlignment="Right" FlowDirection="RightToLeft"   Content="{Binding Path=string, ElementName=full_name}" Width="220" Margin="0,10,-0.2,-0.4" Foreground="White"   />
+
+                    </Grid>
+                </Button>-->
+                
+
+                <TextBox TextChanged="TxtAuto_TextChanged" Grid.Column="1"
+         Style="{StaticResource stTextBox}"  Name="TxtAuto" HorizontalAlignment="Right"  FlowDirection="RightToLeft" Width="220" Height="34" Margin="0,7,53,0"  BorderThickness="1" BorderBrush="Black" FontSize="20"   />
+
+            </Grid>
+
+            <TabControl  Name="TC" Template="{StaticResource TabControlTemplate }"  Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0.4,79,0.4"    >
+
+                <TabItem Name="ti1" Header="מתנדבים" Template="{StaticResource trapezoidTab}" FontSize="17" FontFamily="Cambria" Margin="1,2,-10,-1"  Width="145"    >
+                    <TabItem.Content>
+                        <TabControl>
+
+                            <ListView ItemsSource="{Binding all_data}" MouseDoubleClick="Inbox_MouseDoubleClick" FlowDirection="RightToLeft" Name="inbox" BorderThickness="2"  Background="#FFE3E3E3"  Height="{Binding ElementName=TC, Path=Height}" FontSize="18">
+
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type CheckBox}" x:Key="DataGridCheckBox">
+
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="IsEnabled" Value="True" />
+                                        <Setter Property="Margin" Value="6" />
+                                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type GridViewColumn}},Path=ActualWidth}" />
+                                    </Style>
+
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="{x:Null}" Width="60">
+                                          
+                                            <GridViewColumn.CellTemplate>
+                                                
+                                                <DataTemplate>
+                                                    <!--<DockPanel HorizontalAlignment="Center">-->
+                                                    <!--<CheckBox  IsChecked="{Binding Path=IsSuccess}" Style="{StaticResource DataGridCheckBox}">
+                                                    </CheckBox>-->
+                                                    <!--</DockPanel>-->
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Header="ת.ז" Width="90" DisplayMemberBinding="{Binding [0]}" />
+                                        <GridViewColumn  Header="שם פרטי" Width="120" DisplayMemberBinding="{Binding [1]}" />
+                                        <GridViewColumn Header="שם משפחה" Width="120" DisplayMemberBinding="{Binding [2]}" />
+                                        <GridViewColumn Header="עיר" Width="150" DisplayMemberBinding="{Binding [7]}" />
+                                        <GridViewColumn Header="רחוב" Width="150" DisplayMemberBinding="{Binding [5]}" />
+                                        <GridViewColumn Header="Email" Width="150"  DisplayMemberBinding="{Binding [4]}" />
+                                       
+                                        <GridViewColumn Header="נייד" Width="150" DisplayMemberBinding="{Binding [6]}" />
+                                        <GridViewColumn Header="מצב" Width="150" DisplayMemberBinding="{Binding [3]}" />
+                                        
+                                       
+                                        <GridViewColumn Header="פעילות"  Width="120">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="צור"  Style="{StaticResource btn-primary}"  Width="90" Click="Btn_Delete_Item_In_Cart_Click" Name="btn_Delete_Item_In_Cart">
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="מחיקה"  Width="120">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="להסרה"  Style="{StaticResource btn-primary}"  Width="90" Click="Btn_Delete_Item_In_Cart_Click" Name="btn_Delete_Item_In_Cart">
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </TabControl>
+                    </TabItem.Content>
+
+                    <!--<Grid  Name="gridTabControl" Height="auto"   >
+
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="210"/>
+
+
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding Path=Text,ElementName=TxtAuto}"   Margin="0,2,5,0" FontSize="22"  Grid.Row="0"  FlowDirection="RightToLeft"/>
+
+                        <Border x:Name="border0"
+                            Style="{StaticResource BorderStyle}"
+                            Background="#5291a4"
+                            
+                            BorderThickness="0" Margin="10,0,15,14" Grid.Row="1" >
+
+
+
+                            <TabControl Name="tc2"     Background="{x:Null}"       BorderBrush="{x:Null}" Margin="0,35,10,25"       >
+
+                                <TabItem Name="x"  Header=" עבודות לקוח" Template="{StaticResource trapezoidTab}"   Margin="16,0,-15,3"     >
+                                    <Grid >
+
+                                        <TextBox Name="tbItem0"     AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Text="{Binding Path=TxtAuto}"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"     Style="{StaticResource stTextBox}"   Margin="14,-9,162,5"    />
+                                    </Grid>
+
+
+                                    -->
+                    <!--</ScrollViewer>-->
+                    <!--
+
+                                </TabItem>
+                                <TabItem Header="הערות" Template="{StaticResource trapezoidTab}"  Margin="3,0,-1,3"     />
+                            </TabControl>
+                        </Border>
+
+
+
+                    </Grid>-->
+                </TabItem>
+                <TabItem Name="ti2"  Header="מסועיים"   FontSize="{Binding ElementName=ti1,Path=FontSize}"  Template="{StaticResource trapezoidTab}"    BorderBrush="{x:Null}"   Margin="-5,2,5,-1"   >
+                    <TabItem.Content>
+                        <TabControl>
+
+                            <ListView  MouseDoubleClick="Inbox_MouseDoubleClick" FlowDirection="RightToLeft" Name="inbox2" BorderThickness="2"  Background="#FFE3E3E3"  Height="{Binding ElementName=TC, Path=Height}" FontSize="18">
+                                <ListView.View>
+                                    <GridView x:Name="gridview">
+                                        <GridViewColumn  Header="ת.ז" Width="70" DisplayMemberBinding="{Binding [0]}" />
+                                        <GridViewColumn  Header="שם פרטי" Width="70" DisplayMemberBinding="{Binding [1]}" />
+                                        <GridViewColumn Header="שם משפחה" Width="120" DisplayMemberBinding="{Binding [2]}" />
+                                        <GridViewColumn Header="עיר" Width="150" DisplayMemberBinding="{Binding [7]}" />
+                                        <GridViewColumn Header="רחוב" Width="150" DisplayMemberBinding="{Binding [5]}" />
+                                        <GridViewColumn Header="נייד" Width="150" DisplayMemberBinding="{Binding [6]}" />
+                                        <GridViewColumn Header="Email" Width="150"  DisplayMemberBinding="{Binding [4]}" />
+                                        <GridViewColumn Header="מצב" Width="150" DisplayMemberBinding="{Binding [3]}" />
+                                        <!--<GridViewColumn Header="עדיפות" Width="150" DisplayMemberBinding="{Binding Mode}" />-->
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </TabControl>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Name="ti3" Header="דוחות"   FontSize="{Binding ElementName=ti1,Path=FontSize}"  Template="{StaticResource trapezoidTab}"    BorderBrush="{x:Null}"   Margin="-12,2,5,-1"   >
+
+                </TabItem>
+            </TabControl>
+
+         
+
+            <ListBox Name="List1" HorizontalContentAlignment="Right"   Visibility="Hidden" HorizontalAlignment="Right" ItemsSource="{Binding }" 
+                     Height="auto" Width="233" Grid.Column="1" Background="#333" VerticalAlignment="top"   FontSize="18" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FF4768E2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" >
+                <ListBox.BorderBrush>
+                    <ImageBrush/>
+                </ListBox.BorderBrush>
+            </ListBox>
+           
+        </Grid>
+
+    </ScrollViewer>
+</Window>
+
+
