@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MaterialDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbActivities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strDescription_Activity" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbCities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strCity" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbClassifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strClassification" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbContextVolunteerSupported">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_Id" Type="int" Nullable="false" />
+    <Property Name="Supported_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="strPhone" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbSupportedInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strRequest" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Supported_Id" Type="int" Nullable="false" />
+    <Property Name="Hours" Type="time" Precision="7" />
+    <Property Name="Active_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbTips">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strTip" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="strLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="strEmail" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="strPassword" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Classification_Id" Type="int" Nullable="false" />
+    <Property Name="Details_Id" Type="int" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Date_Registration" Type="datetime" Nullable="false" />
+    <Property Name="strTZ" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="Mode" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbVolunteerInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mode_Active" Type="bit" Nullable="false" />
+    <Property Name="Active_Id" Type="int" Nullable="false" />
+    <Property Name="Volunteer_Id" Type="int" Nullable="false" />
+    <Property Name="Day" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbAdreess_tbCities">
+    <End Role="tbCities" Type="Self.tbCities" Multiplicity="1" />
+    <End Role="tbDetails" Type="Self.tbDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbDetails">
+        <PropertyRef Name="City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbContextVolunteerSupported_tbSupportedInfo">
+    <End Role="tbSupportedInfo" Type="Self.tbSupportedInfo" Multiplicity="1" />
+    <End Role="tbContextVolunteerSupported" Type="Self.tbContextVolunteerSupported" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSupportedInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbContextVolunteerSupported">
+        <PropertyRef Name="Supported_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbContextVolunteerSupported_tbVolunteerInfo">
+    <End Role="tbVolunteerInfo" Type="Self.tbVolunteerInfo" Multiplicity="1" />
+    <End Role="tbContextVolunteerSupported" Type="Self.tbContextVolunteerSupported" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbVolunteerInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbContextVolunteerSupported">
+        <PropertyRef Name="Volunteer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbSupportedInfo_tbActivities">
+    <End Role="tbActivities" Type="Self.tbActivities" Multiplicity="1" />
+    <End Role="tbSupportedInfo" Type="Self.tbSupportedInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbActivities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbSupportedInfo">
+        <PropertyRef Name="Active_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbSupportedInfo_tbUsers">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbSupportedInfo" Type="Self.tbSupportedInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbSupportedInfo">
+        <PropertyRef Name="Supported_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbUsers_tbClassification">
+    <End Role="tbClassifications" Type="Self.tbClassifications" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbClassifications">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="Classification_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbUsers_tbDetails">
+    <End Role="tbDetails" Type="Self.tbDetails" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="Details_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbVolunteerInfo_tbActivities1">
+    <End Role="tbActivities" Type="Self.tbActivities" Multiplicity="1" />
+    <End Role="tbVolunteerInfo" Type="Self.tbVolunteerInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbActivities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbVolunteerInfo">
+        <PropertyRef Name="Active_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbVolunteerInfo_tbUsers">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbVolunteerInfo" Type="Self.tbVolunteerInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbVolunteerInfo">
+        <PropertyRef Name="Volunteer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MaterialDbModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbActivities" EntityType="Self.tbActivities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCities" EntityType="Self.tbCities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbClassifications" EntityType="Self.tbClassifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbContextVolunteerSupported" EntityType="Self.tbContextVolunteerSupported" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbDetails" EntityType="Self.tbDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbSupportedInfo" EntityType="Self.tbSupportedInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbTips" EntityType="Self.tbTips" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUsers" EntityType="Self.tbUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbVolunteerInfo" EntityType="Self.tbVolunteerInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbAdreess_tbCities" Association="Self.FK_tbAdreess_tbCities">
+      <End Role="tbCities" EntitySet="tbCities" />
+      <End Role="tbDetails" EntitySet="tbDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbContextVolunteerSupported_tbSupportedInfo" Association="Self.FK_tbContextVolunteerSupported_tbSupportedInfo">
+      <End Role="tbSupportedInfo" EntitySet="tbSupportedInfo" />
+      <End Role="tbContextVolunteerSupported" EntitySet="tbContextVolunteerSupported" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbContextVolunteerSupported_tbVolunteerInfo" Association="Self.FK_tbContextVolunteerSupported_tbVolunteerInfo">
+      <End Role="tbVolunteerInfo" EntitySet="tbVolunteerInfo" />
+      <End Role="tbContextVolunteerSupported" EntitySet="tbContextVolunteerSupported" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbSupportedInfo_tbActivities" Association="Self.FK_tbSupportedInfo_tbActivities">
+      <End Role="tbActivities" EntitySet="tbActivities" />
+      <End Role="tbSupportedInfo" EntitySet="tbSupportedInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbSupportedInfo_tbUsers" Association="Self.FK_tbSupportedInfo_tbUsers">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbSupportedInfo" EntitySet="tbSupportedInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbUsers_tbClassification" Association="Self.FK_tbUsers_tbClassification">
+      <End Role="tbClassifications" EntitySet="tbClassifications" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbUsers_tbDetails" Association="Self.FK_tbUsers_tbDetails">
+      <End Role="tbDetails" EntitySet="tbDetails" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbVolunteerInfo_tbActivities1" Association="Self.FK_tbVolunteerInfo_tbActivities1">
+      <End Role="tbActivities" EntitySet="tbActivities" />
+      <End Role="tbVolunteerInfo" EntitySet="tbVolunteerInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbVolunteerInfo_tbUsers" Association="Self.FK_tbVolunteerInfo_tbUsers">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbVolunteerInfo" EntitySet="tbVolunteerInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

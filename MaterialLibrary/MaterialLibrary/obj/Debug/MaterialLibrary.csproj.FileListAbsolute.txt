@@ -1,0 +1,12 @@
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\MaterialLibrary.dll.config
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\MaterialLibrary.dll
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\MaterialLibrary.pdb
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\EntityFramework.dll
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\EntityFramework.xml
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\obj\Debug\MaterialLibrary.csprojAssemblyReference.cache
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\obj\Debug\MaterialLibrary.csproj.CoreCompileInputs.cache
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\obj\Debug\MaterialLibrary.csproj.CopyComplete
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\obj\Debug\MaterialLibrary.dll
+C:\Users\elady\source\repos\MaterialLibrary\MaterialLibrary\obj\Debug\MaterialLibrary.pdb

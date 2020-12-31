@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d9c55f16ccf4633a46c0f2d03337c23" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="MaterialDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbActivity" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbCity" Width="1.5" PointX="1.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbClassification" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbContextVolunteerSupported" Width="1.5" PointX="9.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbDetail" Width="1.5" PointX="3.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbSupportedInfo" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbTip" Width="1.5" PointX="1" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbUser" Width="1.5" PointX="5.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbVolunteerInfo" Width="1.5" PointX="9.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbSupportedInfo_tbActivities" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbVolunteerInfo_tbActivities1" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbAdreess_tbCities" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbUsers_tbClassification" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbContextVolunteerSupported_tbSupportedInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbContextVolunteerSupported_tbVolunteerInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbUsers_tbDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbSupportedInfo_tbUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MaterialDbModel.FK_tbVolunteerInfo_tbUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

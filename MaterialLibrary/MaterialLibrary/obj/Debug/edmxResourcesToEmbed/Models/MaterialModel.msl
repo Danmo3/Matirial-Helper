@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MaterialDbModelStoreContainer" CdmEntityContainer="MaterialDbEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MaterialDbModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbActivities">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbActivity">
+        <MappingFragment StoreEntitySet="tbActivities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strDescription_Activity" ColumnName="strDescription_Activity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbCities">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbCity">
+        <MappingFragment StoreEntitySet="tbCities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strCity" ColumnName="strCity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbClassifications">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbClassification">
+        <MappingFragment StoreEntitySet="tbClassifications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strClassification" ColumnName="strClassification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbContextVolunteerSupporteds">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbContextVolunteerSupported">
+        <MappingFragment StoreEntitySet="tbContextVolunteerSupported">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Volunteer_Id" ColumnName="Volunteer_Id" />
+          <ScalarProperty Name="Supported_Id" ColumnName="Supported_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbDetails">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbDetail">
+        <MappingFragment StoreEntitySet="tbDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strAddress" ColumnName="strAddress" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="strPhone" ColumnName="strPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbSupportedInfoes">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbSupportedInfo">
+        <MappingFragment StoreEntitySet="tbSupportedInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strRequest" ColumnName="strRequest" />
+          <ScalarProperty Name="Supported_Id" ColumnName="Supported_Id" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="Active_Id" ColumnName="Active_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTips">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbTip">
+        <MappingFragment StoreEntitySet="tbTips">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strTip" ColumnName="strTip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUsers">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbUser">
+        <MappingFragment StoreEntitySet="tbUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+          <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+          <ScalarProperty Name="strEmail" ColumnName="strEmail" />
+          <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+          <ScalarProperty Name="Classification_Id" ColumnName="Classification_Id" />
+          <ScalarProperty Name="Details_Id" ColumnName="Details_Id" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Date_Registration" ColumnName="Date_Registration" />
+          <ScalarProperty Name="strTZ" ColumnName="strTZ" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbVolunteerInfoes">
+      <EntityTypeMapping TypeName="MaterialDbModel.tbVolunteerInfo">
+        <MappingFragment StoreEntitySet="tbVolunteerInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mode_Active" ColumnName="Mode_Active" />
+          <ScalarProperty Name="Active_Id" ColumnName="Active_Id" />
+          <ScalarProperty Name="Volunteer_Id" ColumnName="Volunteer_Id" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
