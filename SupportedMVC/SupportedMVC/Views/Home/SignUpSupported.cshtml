@@ -1,0 +1,105 @@
+﻿@model SupportedMVC.Models.SupportedModelView
+
+@{
+    ViewBag.Title = "הרשמה למבקשי סיוע";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>הרשמה למבקשי סיוע</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strTZ, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strTZ, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס ת.ז" } })
+            @Html.ValidationMessageFor(model => model.user.strTZ, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strFirstName, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strFirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס שם פרטי" } })
+            @Html.ValidationMessageFor(model => model.user.strFirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strLastName, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strLastName, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס שם משפחה" } })
+            @Html.ValidationMessageFor(model => model.user.strLastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.user.strCity, htmlAttributes: new { @class = "control-label col-md" })
+            <div class="col-md-15">
+                @Html.DropDownListFor(m => m.user.strCity, (SelectList)ViewBag.CitiesList, "בחר עיר מהרשימה", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.user.strCity, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strAddress, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס כתובת" } })
+            @Html.ValidationMessageFor(model => model.user.strAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strPhone, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס נייד" } })
+            @Html.ValidationMessageFor(model => model.user.strPhone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.strEmail, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.strEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס אימל" } })
+            @Html.ValidationMessageFor(model => model.user.strEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.Password, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס סיסמא" } })
+            @Html.ValidationMessageFor(model => model.user.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.user.Age, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md-15">
+            @Html.EditorFor(model => model.user.Age, new { htmlAttributes = new { @class = "form-control", placeholder = "הכנס גיל" } })
+            @Html.ValidationMessageFor(model => model.user.Age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.supported.AssistenceMessage, new {@style= "font size:32px;"})
+        <div class="col-md-15">
+            @Html.TextAreaFor(model => model.supported.AssistenceMessage, 8, 30, htmlAttributes: new { style = "width: 100%; max-width: 100%;" })
+            @Html.ValidationMessageFor(model => model.supported.AssistenceMessage, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btnSubmit" type="submit" value="סיים הרשמה" class="btn btn-success btn-pressure" />
+                </div>
+            </div>
+            @*@Html.TextAreaFor(model => model.supported.AssistenceMessage, new { htmlAttributes = new { @class = "form-control", placeholder = "נא הזן מידע שיישלח לבחינה זכאות סיוע" } })*@
+            @*@Html.ValidationMessageFor(model => model.supported.AssistenceMessage, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
