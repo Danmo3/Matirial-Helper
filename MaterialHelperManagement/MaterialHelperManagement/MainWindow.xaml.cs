@@ -52,15 +52,6 @@ namespace MaterialHelperManagement
            
         }
 
-        //private void MenuItem_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (MessageBox.Show("האם אתה רוצה לצאת?",
-        //       "יציאה", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-        //    {
-        //        this.Close();
-        //    }
-            
-            
-        //}
+      
     }
 }
