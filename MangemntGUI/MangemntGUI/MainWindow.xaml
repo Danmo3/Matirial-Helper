@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MangemntGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="600" Width="1000">
     <Window.Resources>
 
         <Style x:Key="btn" TargetType="Button">
@@ -262,7 +262,8 @@
 
         <!-- style the VSOnline -->
         <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
-            <StackPanel FlowDirection="RightToLeft" TextBlock.FontSize="22px" Height="50" Orientation="Horizontal" Background="#005A9E" Width="200">
+            <StackPanel FlowDirection="RightToLeft" TextBlock.FontSize="22px" Height="50" Orientation="Horizontal" Width="200" Background="#FF2173FF">
+
                 <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
 
 
@@ -282,10 +283,10 @@
         </Style>
 
     </Window.Resources>
-    
+
     <ScrollViewer>
 
-        <Grid Background="#FF252217" Name="GridRoot"  >
+        <Grid Background="#FF5A788F" Name="GridRoot"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="50"/>
@@ -302,7 +303,9 @@
                 <ColumnDefinition Width="275"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Name="GridHeader"  Background="#FF4381DB" Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="4" VerticalAlignment="Top"  >
+            <Grid Name="GridHeader" Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="4" VerticalAlignment="Top" Background="#FF2D2F2D"  >
+
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
 
@@ -326,14 +329,14 @@
 
                     </Grid>
                 </Button>-->
-                
+
 
                 <TextBox TextChanged="TxtAuto_TextChanged" Grid.Column="1"
          Style="{StaticResource stTextBox}"  Name="TxtAuto" HorizontalAlignment="Right"  FlowDirection="RightToLeft" Width="220" Height="34" Margin="0,7,53,0"  BorderThickness="1" BorderBrush="Black" FontSize="20"   />
 
             </Grid>
 
-            <TabControl  Name="TC" Template="{StaticResource TabControlTemplate }"  Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0.4,79,0.4"    >
+            <TabControl  Name="TC" Template="{StaticResource TabControlTemplate }"  Grid.Row="2" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="20,0.8,20,100.6"    >
 
                 <TabItem Name="ti1" Header="מתנדבים" Template="{StaticResource trapezoidTab}" FontSize="17" FontFamily="Cambria" Margin="1,2,-10,-1"  Width="145"    >
                     <TabItem.Content>
@@ -357,9 +360,9 @@
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="{x:Null}" Width="60">
-                                          
+
                                             <GridViewColumn.CellTemplate>
-                                                
+
                                                 <DataTemplate>
                                                     <!--<DockPanel HorizontalAlignment="Center">-->
                                                     <!--<CheckBox  IsChecked="{Binding Path=IsSuccess}" Style="{StaticResource DataGridCheckBox}">
@@ -374,11 +377,11 @@
                                         <GridViewColumn Header="עיר" Width="150" DisplayMemberBinding="{Binding [7]}" />
                                         <GridViewColumn Header="רחוב" Width="150" DisplayMemberBinding="{Binding [5]}" />
                                         <GridViewColumn Header="Email" Width="150"  DisplayMemberBinding="{Binding [4]}" />
-                                       
+
                                         <GridViewColumn Header="נייד" Width="150" DisplayMemberBinding="{Binding [6]}" />
                                         <GridViewColumn Header="מצב" Width="150" DisplayMemberBinding="{Binding [3]}" />
-                                        
-                                       
+
+
                                         <GridViewColumn Header="פעילות"  Width="120">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
@@ -470,20 +473,71 @@
                         </TabControl>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem Name="ti3" Header="דוחות"   FontSize="{Binding ElementName=ti1,Path=FontSize}"  Template="{StaticResource trapezoidTab}"    BorderBrush="{x:Null}"   Margin="-12,2,5,-1"   >
+                <TabItem Name="ti3" Header="שונות"   FontSize="{Binding ElementName=ti1,Path=FontSize}"  Template="{StaticResource trapezoidTab}"    BorderBrush="{x:Null}"   Margin="-12,2,5,-1"   >
+                    <!--<ScrollViewer>-->
+                    <Grid Height="600" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="43" />
+                            <RowDefinition Height="220" />
 
+                        </Grid.RowDefinitions>
+                        <Border x:Name="border0"
+                            Style="{StaticResource BorderStyle}"
+                            Background="#5291a4"
+                           
+                            BorderThickness="0" Margin="10,10,10.2,40.8" Grid.RowSpan="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition  Height="60"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="הוספת טיפ יומי לאתר" TextAlignment="Right"  Grid.Row="0" Foreground="#FFEAEAEA" FontWeight="Bold" FontSize="20"/>
+
+                                <TextBox Name="tbTip"   AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Text="{Binding Path=TxtAuto}"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"     Style="{StaticResource stTextBox}" Margin="10,31.8,10,-70" Grid.Row="1"  FlowDirection="RightToLeft"   />
+                                <TextBlock Name="tblTip" Visibility="Hidden"  Text=" חרגת מכמות התווים האפשרית שהיא 250 או שהטיפ כבר שמור" FlowDirection="RightToLeft"  Height="27"  FontSize="20" FontWeight="Bold" Grid.Row="0" Foreground="#FFDBF92E" Margin="0,30,-0.8,34" Grid.RowSpan="2" />
+                            </Grid>
+
+
+                        </Border>
+
+                        <Border x:Name="border1"
+                            Style="{StaticResource BorderStyle}"
+                            Background="#5291a4"
+                           
+                            BorderThickness="0" Margin="10,206,10.2,-183.2" Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition  Height="60"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="הוספת ספוסנר לאתר" TextAlignment="Right"  Grid.Row="0" Foreground="#FFEAEAEA" FontWeight="Bold" FontSize="20" Margin="0,0,-0.8,60" Grid.RowSpan="2"/>
+
+                                <TextBox Name="tbSponsor"   AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Text="{Binding Path=TxtAuto}"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"     Style="{StaticResource stTextBox}" Margin="10,9.8,10.2,-32" Grid.Row="1"  FlowDirection="RightToLeft"   />
+                               
+                            </Grid>
+
+
+                        </Border>
+
+
+                        <Button Name="buttab4" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Button_Click"
+                                Content="שמור"  Height="36" Width="191" Margin="60,0,0,-300.2" Style="{StaticResource btn-primary}"/>
+                    </Grid>
+                    <!--</ScrollViewer>-->
                 </TabItem>
             </TabControl>
 
-         
 
-            <ListBox Name="List1" HorizontalContentAlignment="Right"   Visibility="Hidden" HorizontalAlignment="Right" ItemsSource="{Binding }" 
+
+            <!--<ListBox Name="List1" HorizontalContentAlignment="Right"   Visibility="Hidden" HorizontalAlignment="Right" ItemsSource="{Binding }" 
                      Height="auto" Width="233" Grid.Column="1" Background="#333" VerticalAlignment="top"   FontSize="18" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FF4768E2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" >
                 <ListBox.BorderBrush>
                     <ImageBrush/>
                 </ListBox.BorderBrush>
-            </ListBox>
-           
+            </ListBox>-->
+
         </Grid>
 
     </ScrollViewer>

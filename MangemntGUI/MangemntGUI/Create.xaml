@@ -1,0 +1,246 @@
+﻿<Window x:Class="MangemntGUI.Create"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MangemntGUI"
+        mc:Ignorable="d"
+        Title="Create" Height="770" Width="1550">
+    <Window.Resources>
+        <Style x:Key="btn" TargetType="Button">
+            <Setter Property="FontFamily" Value="Helvetica Neue,Helvetica,Arial,sans-serif"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border Name="border" CornerRadius="4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border Name="dropShadowBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="0" Visibility="Hidden">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.16">
+                                            <GradientStop Color="#22000000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <ContentPresenter Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!--default button highlight-->
+                            <Trigger Property="Button.IsDefaulted" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <!--inner drop shadow when pressed / checked-->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Visibility" TargetName="dropShadowBorder" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="dropShadowBorder" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="border" Value="0.60"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btn-primary" TargetType="Button" BasedOn="{StaticResource btn}">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="#fff"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#428bca"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#357ebd"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" Value="#3071a9"/>
+                    <Setter Property="BorderBrush" Value="#285e8e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="resTextBox"  TargetType="TextBox">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Width" Value="240"/>
+            <Setter Property="Background" Value="#FFBCDFFF"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding  Height}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" >
+                            <ScrollViewer Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+
+        <Style x:Key="resTextLabel"  TargetType="Label">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Foreground" Value="#FFFFFE24"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </Window.Resources>
+    <Grid Name="gridMain"  Background="#FF5A788F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="480"/>
+            <ColumnDefinition Width="560"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="68"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+
+        <!--Volunteer details-->
+        <TextBlock  Background="#FF1A1B1D" FlowDirection="RightToLeft" TextAlignment="Center" Text="יצירת פעילות למתנדב" Grid.Column="0" Grid.ColumnSpan="3"   FontSize="36" FontWeight="Bold" Foreground="#FF2173FF" Grid.Row="0" Margin="0,0,0,0"      />
+        <Label Name="labVol" Content="פרטי מתנדב:"   Style="{StaticResource resTextLabel}" FontSize="40"  Width="242" Margin="0,0,104,0"   Foreground="White" Height="62" Grid.Column="2" Grid.Row="1" />
+
+        <Label Name="lab1" Content="שם:"   Style="{StaticResource resTextLabel}"   Margin="0,0,75,0" Grid.Column="2" Grid.Row="2"   />
+        <TextBox  Name="txtName"   Style="{StaticResource resTextBox}" Margin="0,0,135,0"   Grid.Row="2" Grid.Column="2" Height="36"  />
+
+        <Label  Content="ת.ז:"    Style="{StaticResource resTextLabel}"  Margin="0,0,75,0"  Grid.Row="3" Grid.Column="2" />
+        <TextBox  Name="txtTZ" Text="{Binding [0]}"   Style="{StaticResource resTextBox}"  Margin="0,0,135,0"   Grid.Row="3" Grid.Column="2" />
+
+        <Label   Content="עיר:" Style="{StaticResource resTextLabel}" Margin="0,0,74,0" Grid.Column="2" Grid.Row="4"  />
+        <TextBox  Name="txtCity" Text="{Binding [7]}"   Style="{StaticResource resTextBox}" Margin="0,0,135,0" Grid.Column="2"  Grid.Row="4"   />
+
+        <Label Style="{StaticResource resTextLabel}"  Content="רחוב:" Margin="0,0,60,0" Grid.Column="2" Grid.Row="5"/>
+        <TextBox  Name="txtAddress" Text="{Binding [5]}"  Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="2" Grid.Row="5"/>
+
+        <Label   Content="נייד:"    Style="{StaticResource resTextLabel}" Margin="0,0,75,0"  Grid.Column="2" Grid.Row="6"   />
+        <TextBox  Name="txtPhone" Text="{Binding [6]}"  Style="{StaticResource resTextBox}"  Margin="0,0,135,0"  Grid.Column="2"  Grid.Row="6" />
+
+        <Label  Content="Email:"  Style="{StaticResource resTextLabel}" Margin="0,0,45,0" Grid.Column="2"  Grid.Row="7"/>
+        <TextBox  Name="txtEmail" Text="{Binding [4]}"  Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="2" Grid.Row="7"   />
+
+
+
+        <Label  Content="הרשמה:"  Style="{StaticResource resTextLabel}" Grid.Column="2" Margin="0,0,25,0"  Grid.Row="8"    />
+        <TextBox  Name="txtDate" Text="{Binding [9]}" Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="2" Grid.Row="8" Height="36"/>
+
+        <Label  Style="{StaticResource resTextLabel}" Margin="0,0,30,0" Content="סטטוס:" Grid.Column="2"   Grid.Row="9"/>
+        <TextBox  Name="txtstatus" Style="{StaticResource resTextBox}" Margin="0,0,135,0" Grid.Column="2" Grid.Row="9"  />
+
+
+
+        <!--Details seeking assistance -->
+        <Label x:Name="labMassage"  Foreground="Silver" Content="אין פעילות זמינה כרגע"   Style="{StaticResource resTextLabel}" FontSize="46"   Margin="0,0,0,0"  Visibility="Hidden" Grid.Row="0"   Grid.Column="1" Grid.RowSpan="2"  />
+
+        <Grid Name="gridSecond" Grid.Column="0" Grid.Row="0"  Grid.RowSpan="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="68"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="labSpp" Content="פרטי מבקש:"   Style="{StaticResource resTextLabel}" FontSize="40"   Margin="0,0,135,0"   Foreground="White" Grid.Row="1"   Grid.Column="0"   />
+            <Label Name="lab2" Content="שם:"   Style="{StaticResource resTextLabel}"   Margin="0,0,70,0" Grid.Column="0" Grid.Row="2"   />
+            <ComboBox Name="cBoxName" IsEditable="True"  Text="בחר שם " HorizontalAlignment="Right"  Width="240"  DisplayMemberPath="Value[0]" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="0,0,135,0"  Grid.Column="1"  Grid.Row="2"  SelectionChanged="CBox_SelectionChanged" FontWeight="Bold" FontSize="24" Foreground="#FF1F1D1D"    />
+            <!--<TextBox  Name="txtName2"  Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="1"  Grid.Row="2"   />-->
+            <Label Content="רחוב:" Style="{StaticResource resTextLabel}"   Margin="0,0,60,0" Grid.Column="1" Grid.Row="3"/>
+            <ComboBox x:Name="cBoxAddress" IsEditable="True" IsReadOnly="True" Text="בחר רחוב" HorizontalAlignment="Right"  Width="240"  DisplayMemberPath="Value[1]" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="0,0,135,0"  Grid.Column="1"  Grid.Row="3"  SelectionChanged="CBoxAddress_SelectionChanged" FontWeight="Bold" FontSize="24" Foreground="#FF1F1D1D"  BorderBrush="#FFD25858"/>
+
+            <Label  Content="ת.ז:"  Style="{StaticResource resTextLabel}"  Margin="0,0,75,0"  Grid.Row="4" Grid.Column="1" />
+            <TextBox  Name="txtTZ2"   Style="{StaticResource resTextBox}"  Margin="0,0,135,0"   Grid.Row="4" Grid.Column="1" />
+
+            <!--<Label   Content="עיר:" Style="{StaticResource resTextLabel}" Margin="0,0,74,0" Grid.Column="1" Grid.Row="5"  />
+        <TextBox  Name="txtCity2"   Style="{StaticResource resTextBox}" Margin="0,0,135,0" Grid.Column="1"  Grid.Row="5"   />-->
+            <!--<TextBox  Name="txtAddress2" Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="1" Grid.Row="5"/>-->
+
+            <Label   Content="נייד:"    Style="{StaticResource resTextLabel}" Margin="0,0,75,0"  Grid.Column="1" Grid.Row="5"   />
+            <TextBox  Name="txtPhone2"   Style="{StaticResource resTextBox}"  Margin="0,0,135,0"  Grid.Column="1"  Grid.Row="5" />
+
+            <Label  Content="Email:" Style="{StaticResource resTextLabel}" Margin="0,0,45,0" Grid.Column="1"  Grid.Row="6"/>
+            <TextBox  Name="txtEmail2"  Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="1" Grid.Row="6"   />
+
+            <Label  Content="הרשמה:"  Style="{StaticResource resTextLabel}" Grid.Column="1" Margin="0,0,25,0"  Grid.Row="7"    />
+            <TextBox  Name="txtDate2" Style="{StaticResource resTextBox}" Margin="0,0,135,0"  Grid.Column="1" Grid.Row="7" />
+
+
+            <Label  Style="{StaticResource resTextLabel}" Margin="0,0,30,0" Content="סטטוס:" Grid.Column="1"   Grid.Row="8"/>
+            <TextBox  Name="txtstatus2" Style="{StaticResource resTextBox}" Margin="0,0,135,0" Grid.Column="1" Grid.Row="8"  />
+            <Button Grid.Row="9" Name="buttonSave" Style="{StaticResource btn-primary}"  Content="שמור שינויים"   VerticalAlignment="Bottom"  Background="#FF7FC995" FontSize="24" FontWeight="Bold" Foreground="White"    HorizontalAlignment="Right"  Click="Button_Click" Visibility="Visible" Margin="0,0,255,0" />
+            <Button Grid.Row="9" Name="butCancel"  Style="{StaticResource btn-primary}"  Content="ביטול"          VerticalAlignment="Bottom"   Background="#FF7FC995" FontSize="24" FontWeight="Bold" Foreground="White"   HorizontalAlignment="Right" Margin="0,0,170,0" Click="Button_Click"/>
+            <Button Grid.Row="9" Name="butEdit"   Style="{StaticResource btn-primary}"   Content="מצב עריכה"      VerticalAlignment="Bottom"   Background="#FF7FC995" FontSize="24" FontWeight="Bold" Foreground="White"  HorizontalAlignment="Right" Margin="0,0,30,0" Click="Button_Click" />
+        </Grid>
+        
+        <!--<Label Grid.Row="3" Name="labMassage" HorizontalContentAlignment="Center" Background="{x:Null}" Visibility="Hidden" Foreground="#FF1F60BE" Margin="-3,4.6,1,10.4" FlowDirection="RightToLeft" Content="כרגע אין פעילויות זמינות" FontSize="48"/>
+
+        <Grid Name="GridSecond" Grid.Row="5" Margin="2,0.6,-1.2,64" Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label    FlowDirection="RightToLeft" HorizontalAlignment="Right" Content="שם המבקש:" Margin="0,41,464,0.6" Width="149"  FontSize="24" Foreground="#FFCD3F3F" FontWeight="Bold"/>
+            -->
+        <!--<TextBox  x:Name="txt7" FlowDirection="RightToLeft"   IsEnabled="False"   FontWeight="Bold" Background="#FF468AC9" Foreground="White" HorizontalAlignment="Right"  Width="270" FontSize="{Binding FontSize, ElementName=lab1}" Margin="0,47,613,3.6" RenderTransformOrigin="0.229,0.622" />-->
+        <!--
+            
+            <Label FlowDirection="RightToLeft" HorizontalAlignment="Right" Content="רחוב המבקש:" Margin="0,41,10,0" Width="160"  FontSize="24" Foreground="#FFCD3F3F" FontWeight="Bold" Height="52" VerticalAlignment="Top" Grid.RowSpan="2"/>
+
+            <Label  FlowDirection="RightToLeft" HorizontalAlignment="Right" Content="נייד:" Margin="0,44.4,893.8,0" Width="60" FontSize="24" Foreground="#FFCD3F3F" FontWeight="Bold" RenderTransformOrigin="0.893,0.496" Grid.Row="1" Grid.RowSpan="2"/>
+            <TextBox  Name="txt8" FlowDirection="RightToLeft"   IsEnabled="False"   FontWeight="Bold" Background="#FF468AC9" Foreground="White" HorizontalAlignment="Right" Margin="0,40.4,1005.8,10.2" Width="282" FontSize="{Binding FontSize, ElementName=lab1}" Grid.Row="1" />
+
+            <Label  FlowDirection="RightToLeft" HorizontalAlignment="Right" Content="סטטוס:" Margin="0,92.6,877,298" Width="96"  FontSize="24" Foreground="#FFCD3F3F" FontWeight="Bold"/>
+            
+        </Grid>
+ -->
+
+    </Grid>
+
+</Window>

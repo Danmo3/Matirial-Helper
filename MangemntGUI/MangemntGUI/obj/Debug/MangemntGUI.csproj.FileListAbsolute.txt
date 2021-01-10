@@ -23,3 +23,5 @@ C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\bin\Debug\EntityFramework.xm
 C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\bin\Debug\MaterialLibrary.pdb
 C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\bin\Debug\MaterialLibrary.dll.config
+C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\obj\Debug\Create.g.cs
+C:\Users\elady\source\repos\MangemntGUI\MangemntGUI\obj\Debug\Create.baml
