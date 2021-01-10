@@ -14,7 +14,7 @@ namespace MaterialLibrary.BusinessLogic
 
             List<tbUser> ls = new List<tbUser>();
             MaterialDbEntities MatDb = new MaterialDbEntities();
-            var qusUsers = from s in MatDb.tbUsers select s;
+            
             ls = qusUsers.ToList(); 
             return ls;
         }

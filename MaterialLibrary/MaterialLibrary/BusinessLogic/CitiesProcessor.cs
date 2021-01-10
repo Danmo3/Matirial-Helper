@@ -14,11 +14,10 @@ namespace MaterialLibrary.BusinessLogic
         {
             string[] names;
 
-            using (MaterialDbEntities MatDb = new MaterialDbEntities())
-            {
-                var qusCities = from s in MatDb.tbCities select s.strCity;
-                names = qusCities.ToArray();
-            }
+            MaterialDbEntities MatDb = new MaterialDbEntities();
+          var qusCities = from s in MatDb.tbCities select s.strCity;
+          names = qusCities.ToArray();
+       
 
             return names;
         }

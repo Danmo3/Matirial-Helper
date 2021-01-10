@@ -23,7 +23,6 @@ namespace MaterialLibrary.Models
         public int Id { get; set; }
         public string strAddress { get; set; }
         public int City_Id { get; set; }
-        public string strPhone { get; set; }
     
         public virtual tbCity tbCity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

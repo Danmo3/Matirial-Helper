@@ -52,7 +52,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="strAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="City_Id" Type="Int32" Nullable="false" />
-    <Property Name="strPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tbCity" Relationship="Self.FK_tbAdreess_tbCities" FromRole="tbDetails" ToRole="tbCities" />
     <NavigationProperty Name="tbUsers" Relationship="Self.FK_tbUsers_tbDetails" FromRole="tbDetails" ToRole="tbUsers" />
   </EntityType>
@@ -61,7 +60,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="strRequest" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="strRequest" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="Supported_Id" Type="Int32" Nullable="false" />
     <Property Name="Hours" Type="Time" Precision="7" />
     <Property Name="Active_Id" Type="Int32" Nullable="false" />
@@ -74,7 +73,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="strTip" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="strTip" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tbUser">
     <Key>
@@ -91,6 +90,7 @@
     <Property Name="Date_Registration" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="strTZ" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Mode" Type="Boolean" Nullable="false" />
+    <Property Name="strPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tbClassification" Relationship="Self.FK_tbUsers_tbClassification" FromRole="tbUsers" ToRole="tbClassifications" />
     <NavigationProperty Name="tbDetail" Relationship="Self.FK_tbUsers_tbDetails" FromRole="tbUsers" ToRole="tbDetails" />
     <NavigationProperty Name="tbSupportedInfoes" Relationship="Self.FK_tbSupportedInfo_tbUsers" FromRole="tbUsers" ToRole="tbSupportedInfo" />

@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0d9c55f16ccf4633a46c0f2d03337c23" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="ab957b3a2a9244ab97ca6295aa4d9e2d" Name="Diagram1">
         <EntityTypeShape EntityType="MaterialDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MaterialDbModel.tbActivity" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbCity" Width="1.5" PointX="1.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbCity" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MaterialDbModel.tbClassification" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbContextVolunteerSupported" Width="1.5" PointX="9.875" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbDetail" Width="1.5" PointX="3.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbContextVolunteerSupported" Width="1.5" PointX="12.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbDetail" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MaterialDbModel.tbSupportedInfo" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbTip" Width="1.5" PointX="1" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbUser" Width="1.5" PointX="5.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MaterialDbModel.tbVolunteerInfo" Width="1.5" PointX="9.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbTip" Width="1.5" PointX="2.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbUser" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaterialDbModel.tbVolunteerInfo" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="MaterialDbModel.FK_tbSupportedInfo_tbActivities" ManuallyRouted="false" />
         <AssociationConnector Association="MaterialDbModel.FK_tbVolunteerInfo_tbActivities1" ManuallyRouted="false" />
         <AssociationConnector Association="MaterialDbModel.FK_tbAdreess_tbCities" ManuallyRouted="false" />

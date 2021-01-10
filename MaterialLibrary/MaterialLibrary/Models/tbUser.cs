@@ -32,6 +32,7 @@ namespace MaterialLibrary.Models
         public System.DateTime Date_Registration { get; set; }
         public string strTZ { get; set; }
         public bool Mode { get; set; }
+        public string strPhone { get; set; }
     
         public virtual tbClassification tbClassification { get; set; }
         public virtual tbDetail tbDetail { get; set; }

@@ -46,14 +46,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="strAddress" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="City_Id" Type="int" Nullable="false" />
-    <Property Name="strPhone" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="tbSupportedInfo">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="strRequest" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="strRequest" Type="varchar" MaxLength="250" />
     <Property Name="Supported_Id" Type="int" Nullable="false" />
     <Property Name="Hours" Type="time" Precision="7" />
     <Property Name="Active_Id" Type="int" Nullable="false" />
@@ -63,7 +62,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="strTip" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="strTip" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="tbUsers">
     <Key>
@@ -80,6 +79,7 @@
     <Property Name="Date_Registration" Type="datetime" Nullable="false" />
     <Property Name="strTZ" Type="nvarchar" MaxLength="9" Nullable="false" />
     <Property Name="Mode" Type="bit" Nullable="false" />
+    <Property Name="strPhone" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="tbVolunteerInfo">
     <Key>
