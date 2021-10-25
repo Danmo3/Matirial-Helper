@@ -1,0 +1,20 @@
+﻿<Window x:Class="Login.LoginScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Login"
+        mc:Ignorable="d"
+        Title="LoginScreen" Height="300" Width="300" FontSize="14" Background="Bisque">
+    <Border Background="#2e3137" CornerRadius="20" Margin="20">
+        <StackPanel Margin="20,20,19.6,10.4">
+            <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+            <Separator></Separator>
+            <Label Content="שם משתמש:" Foreground="Bisque" HorizontalAlignment="Right"/>
+            <TextBox x:Name="txtUsername" Background="Beige" Foreground="Bisque" FontSize="18"/>
+            <Label Content="סיסמא:" Foreground="Bisque" HorizontalAlignment="Right"/>
+            <PasswordBox x:Name="txtPassword" Background="Beige" Foreground="Bisque" FontSize="18"/>
+            <Button x:Name="btnהתחבר" Content="התחבר" Margin="60 10" Background="Beige" Foreground="Black"/>
+        </StackPanel>
+    </Border>
+</Window>
